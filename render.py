@@ -11,8 +11,10 @@ def render_game_screen(screen, game_logic):
     # Draw the player
     game_logic.player.draw(screen)
 
+    # Load the custom font
+    font = pygame.font.Font(FONT_NAME, FONT_SIZE)
+
     # Draw the score and lives
-    font = pygame.font.SysFont(FONT_NAME, FONT_SIZE)
     score_text = font.render(f"Score: {game_logic.score}", True, WHITE)
     lives_text = font.render(f"Lives: {game_logic.lives}", True, WHITE)
     screen.blit(score_text, (10, 10))

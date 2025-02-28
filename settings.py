@@ -23,7 +23,7 @@ POINTS_PER_OBJECT = 10
 BAD_OBJECT_PENALTY = 1
 
 # Object spawn settings
-OBJECT_SPAWN_DELAY = 1000  # Time (in milliseconds) between object spawns
+OBJECT_SPAWN_DELAY = 1000  # Time between object spawns
 OBJECT_WIDTH = 50
 OBJECT_HEIGHT = 50
 
@@ -34,7 +34,7 @@ PLAYER_START_X = SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2  # Center the player hori
 PLAYER_START_Y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10  # Position the player near the bottom
 
 # File paths
-ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")  # Absolute path to assets
+ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 IMAGES_DIR = os.path.join(ASSETS_DIR, "images")
 FONTS_DIR = os.path.join(ASSETS_DIR, "fonts")
 SOUNDS_DIR = os.path.join(ASSETS_DIR, "sounds")
@@ -43,8 +43,8 @@ SOUNDS_DIR = os.path.join(ASSETS_DIR, "sounds")
 ACHIEVEMENTS_FILE = os.path.join(os.path.dirname(__file__), "achievements.txt")
 
 # Font settings
-FONT_NAME = "arial"
-FONT_SIZE = 32
+FONT_NAME = os.path.join(FONTS_DIR, "PokemonSolidNormal-xyWR.ttf")
+FONT_SIZE = 28
 
 # Image file paths
 PLAYER_IMAGE = os.path.join(IMAGES_DIR, "player.png")

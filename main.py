@@ -9,7 +9,7 @@ pygame.init()
 
 # Set up the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Go, go, run!")
+pygame.display.set_caption("Go, go, run, Teto!")
 
 # Set up the clock
 clock = pygame.time.Clock()

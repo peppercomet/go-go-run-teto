@@ -2,15 +2,17 @@ import pygame
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, WHITE, BLACK, FONT_NAME, FONT_SIZE
 
 def show_menu(screen, best_score):
-    font = pygame.font.SysFont(FONT_NAME, FONT_SIZE)
-    title_font = pygame.font.SysFont(FONT_NAME, FONT_SIZE * 2)
+    """Display the main menu and return the user's choice."""
+    # Load the custom font
+    font = pygame.font.Font(FONT_NAME, FONT_SIZE)
+    title_font = pygame.font.Font(FONT_NAME, FONT_SIZE * 2)
 
     # Menu loop
     while True:
         screen.fill(BLACK)
 
         # Draw the title
-        title_text = title_font.render("Go, go, run!", True, WHITE)
+        title_text = title_font.render("Go, go, run, Teto!", True, WHITE)
         title_rect = title_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4))
         screen.blit(title_text, title_rect)
 
