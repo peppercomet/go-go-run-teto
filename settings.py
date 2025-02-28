@@ -1,3 +1,5 @@
+import os
+
 # Screen dimensions
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -15,7 +17,7 @@ YELLOW = (255, 255, 0)
 
 # Game settings
 PLAYER_SPEED = 5
-OBJECT_SPEED = 3  
+OBJECT_SPEED = 3
 INITIAL_LIVES = 3
 POINTS_PER_OBJECT = 10
 BAD_OBJECT_PENALTY = 1
@@ -32,20 +34,20 @@ PLAYER_START_X = SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2  # Center the player hori
 PLAYER_START_Y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10  # Position the player near the bottom
 
 # File paths
-ASSETS_DIR = "assets"
-IMAGES_DIR = f"{ASSETS_DIR}/images"
-FONTS_DIR = f"{ASSETS_DIR}/fonts"
-SOUNDS_DIR = f"{ASSETS_DIR}/sounds"
+ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")  # Absolute path to assets
+IMAGES_DIR = os.path.join(ASSETS_DIR, "images")
+FONTS_DIR = os.path.join(ASSETS_DIR, "fonts")
+SOUNDS_DIR = os.path.join(ASSETS_DIR, "sounds")
 
 # Achievement storage
-ACHIEVEMENTS_FILE = "achievements.txt"
+ACHIEVEMENTS_FILE = os.path.join(os.path.dirname(__file__), "achievements.txt")
 
 # Font settings
 FONT_NAME = "arial"
 FONT_SIZE = 32
 
 # Image file paths
-PLAYER_IMAGE = f"{IMAGES_DIR}/player.png"
-GOOD_OBJECT_IMAGE = f"{IMAGES_DIR}/good_object.png"
-BAD_OBJECT_IMAGE = f"{IMAGES_DIR}/bad_object.png"
-BACKGROUND_IMAGE = f"{IMAGES_DIR}/background.jpg"
+PLAYER_IMAGE = os.path.join(IMAGES_DIR, "player.png")
+GOOD_OBJECT_IMAGE = os.path.join(IMAGES_DIR, "good_object.png")
+BAD_OBJECT_IMAGE = os.path.join(IMAGES_DIR, "bad_object.png")
+BACKGROUND_IMAGE = os.path.join(IMAGES_DIR, "background.jpg")
