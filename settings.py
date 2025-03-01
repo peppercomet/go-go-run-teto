@@ -1,5 +1,9 @@
 import os
 
+# Neon colors
+NEON_RED = (255, 0, 0)  # Neon red
+NEON_GREEN = (0, 255, 0)  # Neon green
+
 # Screen dimensions
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -57,3 +61,33 @@ PLAYER_IMAGE = os.path.join(IMAGES_DIR, "player.png")
 GOOD_OBJECT_IMAGE = os.path.join(IMAGES_DIR, "good_object.png")
 BAD_OBJECT_IMAGE = os.path.join(IMAGES_DIR, "bad_object.png")
 BACKGROUND_IMAGE = os.path.join(IMAGES_DIR, "background.jpg")
+
+# Achievement definitions
+ACHIEVEMENTS = {
+    "bread_eater": {
+        "name": "Bread Eater",
+        "description": "Score your first point.",
+        "condition": lambda score, objects_collected, time_survived: score >= 10
+    },
+    "bread_collector": {
+        "name": "Bread Collector",
+        "description": "Collect 50 objects.",
+        "condition": lambda score, objects_collected, time_survived: objects_collected >= 50
+    },
+    "survivor": {
+        "name": "I'm Still Standing",
+        "description": "Survive for 60 seconds.",
+        "condition": lambda score, objects_collected, time_survived: time_survived >= 60
+    },
+    "high_score": {
+        "name": "High Score",
+        "description": "Reach a score of 500.",
+        "condition": lambda score, objects_collected, time_survived: score >= 500
+    },
+    "very_high_score": {
+        "name": "Very High Score",
+        "description": "Reach a score of 1000.",
+        "condition": lambda score, objects_collected, time_survived: score >= 100
+    }
+    
+}

@@ -11,6 +11,8 @@ class GameLogic:
         self.lives = 3
         self.objects = []  # List to store falling objects
         self.last_spawn_time = pygame.time.get_ticks()  # Track the last spawn time
+        self.start_time = pygame.time.get_ticks()  # Track the start time of the game
+        self.objects_collected = 0  # Track the number of objects collected
 
     def update(self):
         """Update the game state."""
@@ -34,6 +36,7 @@ class GameLogic:
                 self.objects.remove(obj)
             elif self.player.check_collision(obj.hitbox):  # Use the object's hitbox for collision detection
                 self.score += POINTS_PER_OBJECT  # Increase the score
+                self.objects_collected += 1  # Increment the objects collected counter
                 self.objects.remove(obj)
 
     def spawn_object(self):
@@ -43,3 +46,7 @@ class GameLogic:
     def is_game_over(self):
         """Check if the game is over."""
         return self.lives <= 0
+
+    def get_time_survived(self):
+        """Get the time survived in seconds."""
+        return (pygame.time.get_ticks() - self.start_time) / 1000
