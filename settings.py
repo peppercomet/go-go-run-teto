@@ -22,6 +22,7 @@ YELLOW = (255, 255, 0)
 # Game settings
 PLAYER_SPEED = 9
 OBJECT_SPEED = 5
+BAD_OBJECT_SPEED = 9
 INITIAL_LIVES = 3
 POINTS_PER_OBJECT = 10
 BAD_OBJECT_PENALTY = 1
@@ -49,9 +50,6 @@ IMAGES_DIR = os.path.join(ASSETS_DIR, "images")
 FONTS_DIR = os.path.join(ASSETS_DIR, "fonts")
 SOUNDS_DIR = os.path.join(ASSETS_DIR, "sounds")
 
-# Achievement storage
-ACHIEVEMENTS_FILE = os.path.join(os.path.dirname(__file__), "achievements.txt")
-
 # Font settings
 FONT_NAME = os.path.join(FONTS_DIR, "PokemonSolidNormal-xyWR.ttf")
 FONT_SIZE = 28
@@ -61,6 +59,13 @@ PLAYER_IMAGE = os.path.join(IMAGES_DIR, "player.png")
 GOOD_OBJECT_IMAGE = os.path.join(IMAGES_DIR, "good_object.png")
 BAD_OBJECT_IMAGE = os.path.join(IMAGES_DIR, "bad_object.png")
 BACKGROUND_IMAGE = os.path.join(IMAGES_DIR, "background.jpg")
+
+# Bad object settings
+BAD_OBJECT_SPAWN_PROBABILITY = 0.2  # 20% chance to spawn a bad object
+BAD_OBJECT_PENALTY = 1  # Number of lives lost when colliding with a bad object
+
+# Achievement storage
+ACHIEVEMENTS_FILE = os.path.join(os.path.dirname(__file__), "achievements.txt")
 
 # Achievement definitions
 ACHIEVEMENTS = {

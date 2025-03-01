@@ -1,8 +1,10 @@
+# game_logic.py
+
 import pygame
 import random
 from player import Player
 from objects import FallingObject
-from settings import SCREEN_HEIGHT, OBJECT_SPAWN_DELAY, POINTS_PER_OBJECT
+from settings import SCREEN_HEIGHT, OBJECT_SPAWN_DELAY, POINTS_PER_OBJECT, BAD_OBJECT_SPAWN_PROBABILITY, BAD_OBJECT_PENALTY
 
 class GameLogic:
     def __init__(self):
@@ -35,13 +37,21 @@ class GameLogic:
             if obj.rect.y > SCREEN_HEIGHT:  # Remove off-screen objects
                 self.objects.remove(obj)
             elif self.player.check_collision(obj.hitbox):  # Use the object's hitbox for collision detection
-                self.score += POINTS_PER_OBJECT  # Increase the score
-                self.objects_collected += 1  # Increment the objects collected counter
+                if obj.is_bad:
+                    # Handle bad object collision
+                    self.lives -= BAD_OBJECT_PENALTY
+                    if self.lives <= 0:
+                        self.lives = 0  # Ensure lives don't go below zero
+                else:
+                    # Handle good object collision
+                    self.score += POINTS_PER_OBJECT
+                    self.objects_collected += 1
                 self.objects.remove(obj)
 
     def spawn_object(self):
-        """Spawn a new falling object."""
-        self.objects.append(FallingObject())
+        """Spawn a new falling object (good or bad)."""
+        is_bad = random.random() < BAD_OBJECT_SPAWN_PROBABILITY  # Randomly decide if the object is bad
+        self.objects.append(FallingObject(is_bad))
 
     def is_game_over(self):
         """Check if the game is over."""

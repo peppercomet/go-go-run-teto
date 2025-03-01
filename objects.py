@@ -1,15 +1,19 @@
+# objects.py
+
 import pygame
 import random
-from settings import SCREEN_WIDTH, OBJECT_SPEED, OBJECT_WIDTH, OBJECT_HEIGHT, GOOD_OBJECT_IMAGE, OBJECT_HITBOX_WIDTH, OBJECT_HITBOX_HEIGHT
+from settings import SCREEN_WIDTH, OBJECT_SPEED, BAD_OBJECT_SPEED, OBJECT_WIDTH, OBJECT_HEIGHT, GOOD_OBJECT_IMAGE, BAD_OBJECT_IMAGE, OBJECT_HITBOX_WIDTH, OBJECT_HITBOX_HEIGHT
 
 class FallingObject:
-    def __init__(self):
-        self.image = pygame.image.load(GOOD_OBJECT_IMAGE)
+    def __init__(self, is_bad=False):
+        # Load the appropriate image based on whether the object is bad
+        self.is_bad = is_bad
+        self.image = pygame.image.load(BAD_OBJECT_IMAGE if is_bad else GOOD_OBJECT_IMAGE)
         self.image = pygame.transform.scale(self.image, (OBJECT_WIDTH, OBJECT_HEIGHT))
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, SCREEN_WIDTH - OBJECT_WIDTH)
         self.rect.y = -OBJECT_HEIGHT  # Start above the screen
-        self.speed = OBJECT_SPEED
+        self.speed = BAD_OBJECT_SPEED if is_bad else OBJECT_SPEED  # Use faster speed for bad objects
 
         # Define the hitbox (smaller than the image rectangle)
         self.hitbox = pygame.Rect(0, 0, OBJECT_HITBOX_WIDTH, OBJECT_HITBOX_HEIGHT)
