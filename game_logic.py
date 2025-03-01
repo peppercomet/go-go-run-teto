@@ -18,6 +18,9 @@ class GameLogic:
         keys = pygame.key.get_pressed()
         self.player.handle_input(keys)
 
+        # Update the player's position
+        self.player.update()
+
         # Spawn new objects
         current_time = pygame.time.get_ticks()
         if current_time - self.last_spawn_time > OBJECT_SPAWN_DELAY:
