@@ -1,5 +1,5 @@
 import pygame
-from settings import PLAYER_IMAGE, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_START_X, PLAYER_START_Y, SCREEN_WIDTH
+from settings import PLAYER_IMAGE, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_START_X, PLAYER_START_Y, SCREEN_WIDTH, PLAYER_HITBOX_WIDTH, PLAYER_HITBOX_HEIGHT
 
 class Player:
     def __init__(self):
@@ -15,12 +15,21 @@ class Player:
         # Player movement speed
         self.speed = 5
 
+        # Define the hitbox (smaller than the image rectangle)
+        self.hitbox = pygame.Rect(0, 0, PLAYER_HITBOX_WIDTH, PLAYER_HITBOX_HEIGHT)
+        self.update_hitbox()  # Position the hitbox correctly
+
+    def update_hitbox(self):
+        """Update the hitbox position to align with the player's position."""
+        self.hitbox.center = self.rect.center
+
     def move_left(self):
         """Move the player to the left."""
         self.rect.x -= self.speed
         # Prevent the player from moving off the left side of the screen
         if self.rect.x < 0:
             self.rect.x = 0
+        self.update_hitbox()  # Update the hitbox position
 
     def move_right(self):
         """Move the player to the right."""
@@ -28,6 +37,7 @@ class Player:
         # Prevent the player from moving off the right side of the screen
         if self.rect.x > SCREEN_WIDTH - PLAYER_WIDTH:
             self.rect.x = SCREEN_WIDTH - PLAYER_WIDTH
+        self.update_hitbox()  # Update the hitbox position
 
     def handle_input(self, keys):
         """Handle player movement based on keyboard input."""
@@ -37,9 +47,10 @@ class Player:
             self.move_right()
 
     def check_collision(self, object_rect):
-        """Check if the player collides with an object."""
-        return self.rect.colliderect(object_rect)
+        """Check if the player collides with an object using the hitbox."""
+        return self.hitbox.colliderect(object_rect)
 
     def draw(self, screen):
         """Draw the player on the screen."""
         screen.blit(self.image, self.rect)
+        

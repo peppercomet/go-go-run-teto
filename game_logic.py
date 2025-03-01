@@ -2,7 +2,7 @@ import pygame
 import random
 from player import Player
 from objects import FallingObject
-from settings import OBJECT_SPAWN_DELAY, POINTS_PER_OBJECT, SCREEN_HEIGHT
+from settings import SCREEN_HEIGHT, OBJECT_SPAWN_DELAY, POINTS_PER_OBJECT
 
 class GameLogic:
     def __init__(self):
@@ -29,7 +29,7 @@ class GameLogic:
             obj.update()
             if obj.rect.y > SCREEN_HEIGHT:  # Remove off-screen objects
                 self.objects.remove(obj)
-            elif self.player.check_collision(obj.rect):  # Check for collisions
+            elif self.player.check_collision(obj.hitbox):  # Use the object's hitbox for collision detection
                 self.score += POINTS_PER_OBJECT  # Increase the score
                 self.objects.remove(obj)
 

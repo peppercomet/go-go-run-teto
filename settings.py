@@ -16,8 +16,8 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
 # Game settings
-PLAYER_SPEED = 5
-OBJECT_SPEED = 3
+PLAYER_SPEED = 9
+OBJECT_SPEED = 5
 INITIAL_LIVES = 3
 POINTS_PER_OBJECT = 10
 BAD_OBJECT_PENALTY = 1
@@ -34,10 +34,10 @@ PLAYER_START_X = SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2  # Center the player hori
 PLAYER_START_Y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10  # Position the player near the bottom
 
 # Hitbox settings (smaller than the actual image size)
-PLAYER_HITBOX_WIDTH = 100  
-PLAYER_HITBOX_HEIGHT = 100  
-OBJECT_HITBOX_WIDTH = 80 
-OBJECT_HITBOX_HEIGHT = 80
+PLAYER_HITBOX_WIDTH = 72  
+PLAYER_HITBOX_HEIGHT = 80  
+OBJECT_HITBOX_WIDTH = 50 
+OBJECT_HITBOX_HEIGHT = 50
 
 # File paths
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
