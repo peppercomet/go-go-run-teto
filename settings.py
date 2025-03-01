@@ -24,14 +24,20 @@ BAD_OBJECT_PENALTY = 1
 
 # Object spawn settings
 OBJECT_SPAWN_DELAY = 1000  # Time between object spawns
-OBJECT_WIDTH = 50
-OBJECT_HEIGHT = 50
+OBJECT_WIDTH = 100
+OBJECT_HEIGHT = 100
 
 # Player settings
-PLAYER_WIDTH = 60
-PLAYER_HEIGHT = 60
+PLAYER_WIDTH = 120
+PLAYER_HEIGHT = 120
 PLAYER_START_X = SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2  # Center the player horizontally
 PLAYER_START_Y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10  # Position the player near the bottom
+
+# Hitbox settings (smaller than the actual image size)
+PLAYER_HITBOX_WIDTH = 100  
+PLAYER_HITBOX_HEIGHT = 100  
+OBJECT_HITBOX_WIDTH = 80 
+OBJECT_HITBOX_HEIGHT = 80
 
 # File paths
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")

@@ -11,6 +11,10 @@ def render_game_screen(screen, game_logic):
     # Draw the player
     game_logic.player.draw(screen)
 
+    # Draw the falling objects
+    for obj in game_logic.objects:
+        obj.draw(screen)
+
     # Load the custom font
     font = pygame.font.Font(FONT_NAME, FONT_SIZE)
 
