@@ -36,13 +36,19 @@ def show_menu(screen, best_score, unlocked_achievements):
         achievements_label_rect = achievements_label_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100))  # Adjusted y-position
         screen.blit(achievements_label_text, achievements_label_rect)
 
-        # Draw the actual achievements on the next line
-        achievements_str = ", ".join(
-            [ACHIEVEMENTS.get(achievement_id, {}).get("name", "") for achievement_id in unlocked_achievements]
-        )
-        achievements_text = font.render(achievements_str, True, WHITE)
-        achievements_rect = achievements_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 130))  # Adjusted y-position
-        screen.blit(achievements_text, achievements_rect)
+        # Split achievements into lines with a maximum of 3 achievements per line
+        achievements_list = [ACHIEVEMENTS.get(achievement_id, {}).get("name", "") for achievement_id in unlocked_achievements]
+        achievements_lines = []
+        for i in range(0, len(achievements_list), 3):  # Split into chunks of 3
+            achievements_lines.append(", ".join(achievements_list[i:i + 3]))
+
+        # Draw each line of achievements
+        y_offset = 130  # Starting y-offset for the first line of achievements
+        for line in achievements_lines:
+            achievements_text = font.render(line, True, WHITE)
+            achievements_rect = achievements_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + y_offset))
+            screen.blit(achievements_text, achievements_rect)
+            y_offset += 30  # Increase y-offset for the next line
 
         # Update the display
         pygame.display.flip()

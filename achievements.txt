@@ -1,3 +1,5 @@
 bread_eater
-very_high_score
+bread_collector
 survivor
+high_score
+very_high_score

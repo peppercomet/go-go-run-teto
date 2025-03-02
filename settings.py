@@ -71,6 +71,9 @@ BAD_OBJECT_PENALTY = 1
 # Achievement storage
 ACHIEVEMENTS_FILE = os.path.join(os.path.dirname(__file__), "achievements.txt")
 
+# High score storage
+HIGH_SCORE_FILE = os.path.join(os.path.dirname(__file__), "high_score.txt")
+
 # Achievement definitions
 ACHIEVEMENTS = {
     "bread_eater": {
@@ -96,7 +99,12 @@ ACHIEVEMENTS = {
     "very_high_score": {
         "name": "Very High Score",
         "description": "Reach a score of 1000.",
-        "condition": lambda score, objects_collected, time_survived: score >= 100
+        "condition": lambda score, objects_collected, time_survived: score >= 1000
+    },
+    "very_very_high_score": {
+        "name": "Very High Score",
+        "description": "Reach a score of 1000.",
+        "condition": lambda score, objects_collected, time_survived: score >= 5000
     }
     
 }
