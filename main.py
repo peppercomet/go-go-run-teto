@@ -1,5 +1,5 @@
 import pygame
-from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS, ACHIEVEMENTS, ACHIEVEMENTS_FILE
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS, ACHIEVEMENTS, ACHIEVEMENTS_FILE, SOUNDTRACK_FILE
 from menu import show_menu
 from game_logic import GameLogic
 from render import render_game_screen
@@ -43,6 +43,10 @@ def main():
     # Load unlocked achievements
     unlocked_achievements = load_achievements()
 
+    # Load the soundtrack
+    pygame.mixer.music.load(SOUNDTRACK_FILE)
+    pygame.mixer.music.set_volume(0.3)  # Set volume to 30% (adjust as needed)
+
     # Initial game state
     game_state = STATE_MENU
     game_logic = None
@@ -64,6 +68,7 @@ def main():
                 # Start a new game
                 game_logic = GameLogic()
                 game_state = STATE_PLAYING
+                pygame.mixer.music.play(-1)  # Play the soundtrack on loop
             elif choice == "quit":
                 running = False
 
@@ -96,7 +101,8 @@ def main():
                 if game_logic.score > best_score:
                     best_score = game_logic.score
 
-                # Return to the menu
+                # Stop the soundtrack and return to the menu
+                pygame.mixer.music.stop()
                 game_state = STATE_MENU
 
         # Update the display

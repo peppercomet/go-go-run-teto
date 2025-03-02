@@ -11,37 +11,33 @@ class GameLogic:
         self.player = Player()
         self.score = 0
         self.lives = 3
-        self.objects = []  # List to store falling objects
-        self.last_spawn_time = pygame.time.get_ticks()  # Track the last spawn time
-        self.start_time = pygame.time.get_ticks()  # Track the start time of the game
-        self.objects_collected = 0  # Track the number of objects collected
+        self.objects = []
+        self.last_spawn_time = pygame.time.get_ticks() 
+        self.start_time = pygame.time.get_ticks()
+        self.objects_collected = 0
 
     def update(self):
         """Update the game state."""
-        # Handle player input
         keys = pygame.key.get_pressed()
         self.player.handle_input(keys)
 
-        # Update the player's position
         self.player.update()
 
-        # Spawn new objects
         current_time = pygame.time.get_ticks()
         if current_time - self.last_spawn_time > OBJECT_SPAWN_DELAY:
             self.spawn_object()
             self.last_spawn_time = current_time
 
-        # Update objects
         for obj in self.objects:
             obj.update()
             if obj.rect.y > SCREEN_HEIGHT:  # Remove off-screen objects
                 self.objects.remove(obj)
-            elif self.player.check_collision(obj.hitbox):  # Use the object's hitbox for collision detection
+            elif self.player.check_collision(obj.hitbox):
                 if obj.is_bad:
                     # Handle bad object collision
                     self.lives -= BAD_OBJECT_PENALTY
                     if self.lives <= 0:
-                        self.lives = 0  # Ensure lives don't go below zero
+                        self.lives = 0
                 else:
                     # Handle good object collision
                     self.score += POINTS_PER_OBJECT
@@ -50,7 +46,7 @@ class GameLogic:
 
     def spawn_object(self):
         """Spawn a new falling object (good or bad)."""
-        is_bad = random.random() < BAD_OBJECT_SPAWN_PROBABILITY  # Randomly decide if the object is bad
+        is_bad = random.random() < BAD_OBJECT_SPAWN_PROBABILITY
         self.objects.append(FallingObject(is_bad))
 
     def is_game_over(self):

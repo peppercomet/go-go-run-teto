@@ -1,8 +1,8 @@
 import os
 
 # Neon colors
-NEON_RED = (255, 0, 0)  # Neon red
-NEON_GREEN = (0, 255, 0)  # Neon green
+NEON_RED = (255, 0, 0)  
+NEON_GREEN = (0, 255, 0)
 
 # Screen dimensions
 SCREEN_WIDTH = 800
@@ -28,7 +28,7 @@ POINTS_PER_OBJECT = 10
 BAD_OBJECT_PENALTY = 1
 
 # Object spawn settings
-OBJECT_SPAWN_DELAY = 1000  # Time between object spawns
+OBJECT_SPAWN_DELAY = 1000
 OBJECT_WIDTH = 100
 OBJECT_HEIGHT = 100
 
@@ -38,17 +38,21 @@ PLAYER_HEIGHT = 120
 PLAYER_START_X = SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2  # Center the player horizontally
 PLAYER_START_Y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10  # Position the player near the bottom
 
-# Hitbox settings (smaller than the actual image size)
+# Hitbox settings
 PLAYER_HITBOX_WIDTH = 72  
 PLAYER_HITBOX_HEIGHT = 80  
 OBJECT_HITBOX_WIDTH = 50 
 OBJECT_HITBOX_HEIGHT = 50
 
-# File paths
+# Base directories
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 IMAGES_DIR = os.path.join(ASSETS_DIR, "images")
 FONTS_DIR = os.path.join(ASSETS_DIR, "fonts")
 SOUNDS_DIR = os.path.join(ASSETS_DIR, "sounds")
+MUSIC_DIR = os.path.join(ASSETS_DIR, "music")
+
+# File paths
+SOUNDTRACK_FILE = os.path.join(MUSIC_DIR, "chipi-chipi-chapa-chapa.mp3")
 
 # Font settings
 FONT_NAME = os.path.join(FONTS_DIR, "PokemonSolidNormal-xyWR.ttf")
@@ -61,8 +65,8 @@ BAD_OBJECT_IMAGE = os.path.join(IMAGES_DIR, "bad_object.png")
 BACKGROUND_IMAGE = os.path.join(IMAGES_DIR, "background.jpg")
 
 # Bad object settings
-BAD_OBJECT_SPAWN_PROBABILITY = 0.2  # 20% chance to spawn a bad object
-BAD_OBJECT_PENALTY = 1  # Number of lives lost when colliding with a bad object
+BAD_OBJECT_SPAWN_PROBABILITY = 0.35
+BAD_OBJECT_PENALTY = 1
 
 # Achievement storage
 ACHIEVEMENTS_FILE = os.path.join(os.path.dirname(__file__), "achievements.txt")
@@ -96,3 +100,7 @@ ACHIEVEMENTS = {
     }
     
 }
+
+
+
+
