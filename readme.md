@@ -5,7 +5,7 @@
 
 ![Alt text](assets/images/gameplay.png)
 
-GAMEPLAY
+## GAMEPLAY
 - Character: Control Pear Teto
 - Goal: Survive as long as possible while maximizing your score
 - Mechanics:
