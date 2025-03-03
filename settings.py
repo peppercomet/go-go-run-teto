@@ -102,7 +102,7 @@ ACHIEVEMENTS = {
         "condition": lambda score, objects_collected, time_survived: score >= 1000
     },
     "very_very_high_score": {
-        "name": "Very High Score",
+        "name": "Very Very High Score",
         "description": "Reach a score of 1000.",
         "condition": lambda score, objects_collected, time_survived: score >= 5000
     }
