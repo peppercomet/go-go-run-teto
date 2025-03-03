@@ -22,22 +22,46 @@ def load_achievements():
     """Load unlocked achievements from the achievements file."""
     try:
         with open(ACHIEVEMENTS_FILE, "r") as file:
-            return set(file.read().splitlines())  # Use a set for fast lookups
+            return set(file.read().splitlines())
     except FileNotFoundError:
-        return set()  # Return an empty set if the file doesn't exist
+        return set() 
 
 def save_achievement(achievement_id):
     """Save a newly unlocked achievement to the achievements file."""
     with open(ACHIEVEMENTS_FILE, "a") as file:
-        file.write(achievement_id + "\n")  # Append the achievement ID to the file
+        file.write(achievement_id + "\n")
 
 def check_achievements(score, objects_collected, time_survived, unlocked_achievements):
     """Check if any new achievements have been unlocked."""
     new_achievements = []
     for achievement_id, achievement in ACHIEVEMENTS.items():
         if achievement_id not in unlocked_achievements and achievement["condition"](score, objects_collected, time_survived):
-            new_achievements.append(achievement_id)  # Add newly unlocked achievements to the list
+            new_achievements.append(achievement_id)
     return new_achievements
+
+def read_highest_score():
+    """Read the highest score from the highest_score.txt file."""
+    try:
+        with open("highest_score.txt", "r") as file:
+            return int(file.read().strip())
+    except (FileNotFoundError, ValueError):
+        return 0
+
+def save_high_score(score):
+    """Save the high score to the highest_score.txt file if it's higher than the current one."""
+    try:
+        # Check if the current score is higher than the saved high score
+        current_high_score = read_highest_score()
+        
+        # Only save if the new score is higher
+        if score > current_high_score:
+            with open("highest_score.txt", "w") as file:
+                file.write(str(score))
+            return True
+        return False
+    except Exception as e:
+        print(f"Error saving high score: {e}")
+        return False
 
 def main():
     # Load unlocked achievements
@@ -45,12 +69,12 @@ def main():
 
     # Load the soundtrack
     pygame.mixer.music.load(SOUNDTRACK_FILE)
-    pygame.mixer.music.set_volume(0.3)  # Set volume to 30% (adjust as needed)
+    pygame.mixer.music.set_volume(0.3)
 
     # Initial game state
     game_state = STATE_MENU
     game_logic = None
-    best_score = 0  # Track the best score across sessions
+    best_score = read_highest_score()
 
     # Main game loop
     running = True
@@ -63,12 +87,12 @@ def main():
         # State management
         if game_state == STATE_MENU:
             # Show the main menu and get the user's choice
-            choice = show_menu(screen, best_score, unlocked_achievements)  # Pass best score and achievements
+            choice = show_menu(screen, best_score, unlocked_achievements)
             if choice == "start":
                 # Start a new game
                 game_logic = GameLogic()
                 game_state = STATE_PLAYING
-                pygame.mixer.music.play(-1)  # Play the soundtrack on loop
+                pygame.mixer.music.play(-1)
             elif choice == "quit":
                 running = False
 
@@ -100,6 +124,7 @@ def main():
                 # Update the best score
                 if game_logic.score > best_score:
                     best_score = game_logic.score
+                    save_high_score(best_score)  # Save the new best score to the file
 
                 # Stop the soundtrack and return to the menu
                 pygame.mixer.music.stop()
