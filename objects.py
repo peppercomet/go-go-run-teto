@@ -31,5 +31,3 @@ class FallingObject:
     def draw(self, screen):
         """Draw the object on the screen."""
         screen.blit(self.image, self.rect)
-        # Optional: Draw the hitbox for debugging
-        # pygame.draw.rect(screen, RED, self.hitbox, 2)

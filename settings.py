@@ -28,7 +28,7 @@ POINTS_PER_OBJECT = 10
 BAD_OBJECT_PENALTY = 1
 
 # Object spawn settings
-OBJECT_SPAWN_DELAY = 1000
+OBJECT_SPAWN_DELAY = 120
 OBJECT_WIDTH = 100
 OBJECT_HEIGHT = 100
 
@@ -95,11 +95,6 @@ ACHIEVEMENTS = {
         "name": "High Score",
         "description": "Reach a score of 500.",
         "condition": lambda score, objects_collected, time_survived: score >= 500
-    },
-    "very_high_score": {
-        "name": "Very High Score",
-        "description": "Reach a score of 1000.",
-        "condition": lambda score, objects_collected, time_survived: score >= 1000
     },
     "very_very_high_score": {
         "name": "Very Very High Score",
